@@ -11,10 +11,12 @@ const Header = () => {
       >
         <Container className="container-fluid">
           <Sidebar />
-          <Navbar.Brand href="/">Shop Name</Navbar.Brand>
+          <Navbar.Brand href="/" className="px-3">
+            Shop Name
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
+            <Nav>
               <Nav.Link href="/cart">
                 <i className="fas fa-shopping-cart"></i> Cart
               </Nav.Link>

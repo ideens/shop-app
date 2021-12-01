@@ -9,9 +9,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <Button className="btn btn-secondary btn-sm" onClick={handleShow}>
-        <i className="fas fa-bars"></i>
-      </Button>
+      <i className="fas fa-bars text-dark mr-3" onClick={handleShow}></i>
 
       <Offcanvas
         show={show}
