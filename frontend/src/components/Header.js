@@ -1,5 +1,6 @@
 import React from 'react'
-import { Nav, Navbar, Container, Row, Col } from 'react-bootstrap'
+import { Nav, Navbar, Container, Row, Col, Offcanvas } from 'react-bootstrap'
+import Sidebar from './Sidebar'
 
 const Header = () => {
   return (
@@ -9,7 +10,8 @@ const Header = () => {
         collapseOnSelect
       >
         <Container className="container-fluid">
-          <Navbar.Brand href="/">canvas</Navbar.Brand>
+          <Sidebar />
+          <Navbar.Brand href="/">Shop Name</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
