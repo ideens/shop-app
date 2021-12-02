@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Offcanvas, Button, Nav } from 'react-bootstrap'
+import { Offcanvas, Nav } from 'react-bootstrap'
 
 const Sidebar = () => {
   const [show, setShow] = useState(false)

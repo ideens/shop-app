@@ -1,5 +1,6 @@
 import React from 'react'
-import { Nav, Navbar, Container, Row, Col, Offcanvas } from 'react-bootstrap'
+import { Nav, Navbar, Container, Row, Col } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import Sidebar from './Sidebar'
 
 const Header = () => {
@@ -11,18 +12,22 @@ const Header = () => {
       >
         <Container className="container-fluid">
           <Sidebar />
-          <Navbar.Brand href="/" className="px-3">
-            Shop Name
-          </Navbar.Brand>
+          <LinkContainer to="">
+            <Navbar.Brand className="px-3">Shop Name</Navbar.Brand>
+          </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
-              <Nav.Link href="/cart">
-                <i className="fas fa-shopping-cart"></i> Cart
-              </Nav.Link>
-              <Nav.Link href="/login">
-                <i className="fas fa-user"></i> Login
-              </Nav.Link>
+              <LinkContainer to="/cart">
+                <Nav.Link>
+                  <i className="fas fa-shopping-cart"></i> Cart
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/login">
+                <Nav.Link>
+                  <i className="fas fa-user"></i> Login
+                </Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Container>
