@@ -2,6 +2,8 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product.js'
+import LoadSpinner from '../components/LoadSpinner.js'
+import AlertMessage from '../components/AlertMessage.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../actions/productActions'
 
@@ -31,9 +33,9 @@ const Home = () => {
     <div>
       <h1>Latest Products</h1>
       {loading ? (
-        <h2>Loading...</h2>
+        <LoadSpinner />
       ) : error ? (
-        <h3>{error}</h3>
+        <AlertMessage variant="warning">{error}</AlertMessage>
       ) : (
         <Row>
           {products.map((product) => (

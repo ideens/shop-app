@@ -1,11 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { productListReducer } from './reducers/productReducers'
+import {
+  productListReducer,
+  productDetailReducer,
+} from './reducers/productReducers'
 
 // states
 const reducer = combineReducers({
   productList: productListReducer,
+  productDetail: productDetailReducer,
 })
 
 const initialState = {}
@@ -20,3 +24,5 @@ const store = createStore(
 )
 
 export default store
+
+// make the constants, create the reducer, add it to store, make the action

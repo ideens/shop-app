@@ -2,6 +2,9 @@ import {
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_REQUEST,
+  PRODUCT_DETAIL_FAIL,
+  PRODUCT_DETAIL_SUCCESS,
+  PRODUCT_DETAIL_REQUEST,
 } from '../constants/productConstants'
 
 // Notes
@@ -29,5 +32,24 @@ export const productListReducer = (state = { products: [] }, action) => {
       return state
     // If this reducer doesn't recognize the action type, or doesn't
     // care about this specific action, return the existing state unchanged
+  }
+}
+
+export const productDetailReducer = (
+  state = { product: { reviews: [] } },
+  action
+) => {
+  switch (action.type) {
+    case PRODUCT_DETAIL_REQUEST:
+      return { loading: true, ...state }
+
+    case PRODUCT_DETAIL_SUCCESS:
+      return { loading: false, product: action.payload }
+
+    case PRODUCT_DETAIL_FAIL:
+      return { loading: false, error: action.payload }
+
+    default:
+      return state
   }
 }
