@@ -12,7 +12,7 @@ import {
   ListGroupItem,
 } from 'react-bootstrap'
 import AlertMessage from '../components/AlertMessage'
-import { addToCart } from '../actions/cartActions'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 import { useParams } from 'react-router'
 
 const Cart = () => {
@@ -33,6 +33,15 @@ const Cart = () => {
   const { cartItems } = cart
   console.log('cart Items: ', cartItems)
 
+  const removeItem = (id) => {
+    console.log('remove', id)
+    dispatch(removeFromCart(id))
+  }
+
+  const handleCheckout = () => {
+    navigate(`/login?redirect=shipping`)
+  }
+
   return (
     <div>
       <Link to="/" style={{ textDecoration: 'none' }}>
@@ -49,7 +58,7 @@ const Cart = () => {
             <ListGroup>
               {cartItems.map((item) => (
                 <ListGroupItem key={item.product} className="pb-1">
-                  <Row className="mt-1 mb-2">
+                  <Row className="mt-0 mb-1">
                     <Col md={2}>
                       <Image
                         src={`${process.env.REACT_APP_BASE_URL}${item.image}`}
@@ -59,7 +68,10 @@ const Cart = () => {
                       />
                     </Col>
                     <Col md={3}>
-                      <Link to={`/product/${item.product}`}>
+                      <Link
+                        to={`/product/${item.product}`}
+                        style={{ textDecoration: 'none' }}
+                      >
                         <h6>{item.name}</h6>
                       </Link>
                     </Col>
@@ -67,14 +79,15 @@ const Cart = () => {
                     <Col md={2}>
                       <Form.Control
                         as="select"
+                        variant="outline-dark"
                         style={{
-                          color: '#343A40',
-                          backgroundColor: '#E9E9E8',
                           maxWidth: '45px',
                         }}
                         value={item.quantity}
                         onChange={(e) =>
-                          dispatch(addToCart(item.product, e.target.value))
+                          dispatch(
+                            addToCart(item.product, Number(e.target.value))
+                          )
                         }
                         size="sm"
                       >
@@ -85,6 +98,14 @@ const Cart = () => {
                         ))}
                       </Form.Control>
                     </Col>
+                    <Col md={1}>
+                      <div
+                        type="button"
+                        onClick={() => removeItem(item.product)}
+                      >
+                        <i className="fas fa-trash"></i>
+                      </div>
+                    </Col>
                   </Row>
                   <hr className="mt-0 mb-0" style={{ color: 'white' }} />
                 </ListGroupItem>
@@ -92,7 +113,41 @@ const Cart = () => {
             </ListGroup>
           )}
         </Col>
-        <Col md={4}></Col>
+        <Col md={4}>
+          <Card className="card bg-light mb-3">
+            <ListGroup>
+              <ListGroupItem className="text-dark my-0">
+                <h5>
+                  <span style={{ fontSize: '1.8rem' }}>Cart total </span> (
+                  {cartItems.reduce((acc, item) => acc + item.quantity, 0)}{' '}
+                  items)
+                </h5>
+              </ListGroupItem>
+              <ListGroupItem className="text-dark pt-0">
+                <p style={{ fontSize: '1.5rem' }}>
+                  £
+                  {cartItems
+                    .reduce((acc, item) => acc + item.quantity * item.price, 0)
+                    .toFixed(2)}
+                </p>
+              </ListGroupItem>
+              <ListGroupItem className="d-grid gap-2 pt-1">
+                <button
+                  type="button"
+                  className="btn-dark"
+                  onClick={handleCheckout}
+                  disabled={cartItems.length === 0}
+                  style={{
+                    borderRadius: '8px',
+                    height: '40px',
+                  }}
+                >
+                  Go to Checkout
+                </button>
+              </ListGroupItem>
+            </ListGroup>
+          </Card>
+        </Col>
       </Row>
     </div>
   )

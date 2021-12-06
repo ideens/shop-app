@@ -27,6 +27,16 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
         }
       }
 
+    case CART_REMOVE_ITEM:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (val) => val.product !== action.payload
+        ),
+        // keeps items that doesn't match that id
+        // if item with that id is found, create new array without item
+      }
+
     default:
       return state
   }
