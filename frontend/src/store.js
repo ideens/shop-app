@@ -14,7 +14,16 @@ const reducer = combineReducers({
   cart: cartReducer,
 })
 
-const initialState = {}
+//loading local storage data into initial state
+const storageItems = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : []
+
+// if items exists, get them and parse them. if not, set it empty array
+
+const initialState = {
+  cart: { cartItems: storageItems },
+}
 
 const middleware = [thunk]
 

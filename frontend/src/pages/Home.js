@@ -34,7 +34,9 @@ const Home = () => {
       {loading ? (
         <LoadSpinner />
       ) : error ? (
-        <AlertMessage variant="warning">{error}</AlertMessage>
+        <AlertMessage heading="error" variant="warning">
+          {error}
+        </AlertMessage>
       ) : (
         <Row>
           {products.map((product) => (

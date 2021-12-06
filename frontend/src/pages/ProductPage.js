@@ -19,8 +19,8 @@ import Rating from '../components/Rating'
 
 const ProductPage = () => {
   const navigate = useNavigate()
-  const [quantity, setQuantity] = useState(1)
   const { id } = useParams()
+  const [quantity, setQuantity] = useState(1)
   const dispatch = useDispatch()
   const productDetail = useSelector((state) => state.productDetail)
   const { loading, error, product } = productDetail
