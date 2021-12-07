@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.contrib.auth.models import User
+
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from .models import Product
 from .serializers import ProductSerializer, UserSerializer, UserTokenSerializer
@@ -15,10 +18,21 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 class UserView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         user = request.user  # gets user from token, not admin login
         serialized_user = UserSerializer(user, many=False)
         return Response(serialized_user.data)
+
+
+class UserListView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def get(self, request):
+        users = User.objects.all()
+        serialized_users = UserSerializer(users, many=True)
+        return Response(serialized_users.data)
 
 
 class ProductsDetailView(APIView):
@@ -32,7 +46,6 @@ class ProductsListView(APIView):
     def get(self, request):
         products = Product.objects.all()
         serialized_products = ProductSerializer(products, many=True)
-
         return Response(serialized_products.data)
 
 
