@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product.js'
 import LoadSpinner from '../components/LoadSpinner.js'
@@ -34,7 +34,7 @@ const Home = () => {
       {loading ? (
         <LoadSpinner />
       ) : error ? (
-        <AlertMessage heading="error" variant="warning">
+        <AlertMessage heading="Error" variant="warning">
           {error}
         </AlertMessage>
       ) : (

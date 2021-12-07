@@ -44,7 +44,9 @@ const ProductPage = () => {
       {loading ? (
         <LoadSpinner />
       ) : error ? (
-        <AlertMessage variant="warning">{error}</AlertMessage>
+        <AlertMessage heading="Error" variant="warning">
+          {error}
+        </AlertMessage>
       ) : (
         <Row>
           <Col md={5}>

@@ -6,6 +6,7 @@ import Cart from './pages/Cart.js'
 
 import Home from './pages/Home'
 import ProductPage from './pages/ProductPage'
+import LoginPage from './pages/LoginPage'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/product/:id" element={<ProductPage />} />
           <Route exact path="/cart" element={<Cart />} />
           <Route path="/cart/:id/*" element={<Cart />} />
+          <Route path="/login/" element={<LoginPage />} />
         </Routes>
       </Container>
       <Footer />
