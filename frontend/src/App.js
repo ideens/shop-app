@@ -7,6 +7,7 @@ import Cart from './pages/Cart.js'
 import Home from './pages/Home'
 import ProductPage from './pages/ProductPage'
 import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/cart" element={<Cart />} />
           <Route path="/cart/:id/*" element={<Cart />} />
           <Route path="/login/" element={<LoginPage />} />
+          <Route path="/register/" element={<RegisterPage />} />
         </Routes>
       </Container>
       <Footer />
