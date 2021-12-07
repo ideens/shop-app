@@ -63,7 +63,6 @@ const Cart = () => {
                         src={`${process.env.REACT_APP_BASE_URL}${item.image}`}
                         alt={item.name}
                         fluid
-                        rounder
                       />
                     </Col>
                     <Col md={3}>

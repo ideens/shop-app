@@ -23,15 +23,16 @@ const LoginPage = () => {
   const dispatch = useDispatch()
 
   const url = new URLSearchParams(document.location.search)
-  let params = new URLSearchParams(url.search)
-  const redirect = params.has('redirect') ? params.get(redirect) : '/'
+  const redirect = url.has('redirect') ? url.get('redirect') : '/'
 
   const userLogin = useSelector((state) => state.userLogin)
   const { loading, error, userInfo } = userLogin
 
   useEffect(() => {
+    console.log('first instance', redirect)
     if (userInfo) {
-      navigate(redirect)
+      navigate(`/${redirect}`)
+      console.log('REDIRECT - ', redirect)
     }
   }, [navigate, redirect, userInfo])
 
@@ -45,13 +46,13 @@ const LoginPage = () => {
       <h2>Log in</h2>
       {error && (
         <AlertMessage heading="Error" variant="danger">
-          {error}
+          Please enter correct details
         </AlertMessage>
       )}
       {loading && <LoadSpinner />}
       <Form onSubmit={submitHandler}>
         <FormGroup controlId="email">
-          <FormLabel>Email</FormLabel>
+          <FormLabel className="mt-2">Email</FormLabel>
           <FormControl
             type="email"
             placeholder="example@email.com"
@@ -60,7 +61,7 @@ const LoginPage = () => {
           ></FormControl>
         </FormGroup>
         <FormGroup controlId="password">
-          <FormLabel>Password</FormLabel>
+          <FormLabel className="mt-2">Password</FormLabel>
           <FormControl
             type="password"
             placeholder="password"
@@ -68,9 +69,11 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           ></FormControl>
         </FormGroup>
-        <Button type="submit" className="btn btn-dark btn-sm mt-2">
-          Log in
-        </Button>
+        <div className="d-grid gap-2">
+          <Button type="submit" className="btn btn-dark btn-sm mt-2">
+            Log in
+          </Button>
+        </div>
       </Form>
       <Row className="py-3">
         <Col>

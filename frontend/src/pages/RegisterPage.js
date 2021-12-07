@@ -102,9 +102,11 @@ const RegisterPage = () => {
             onChange={(e) => setPasswordConf(e.target.value)}
           ></FormControl>
         </FormGroup>
-        <Button type="submit" className="btn btn-dark btn-sm mt-2">
-          Register
-        </Button>
+        <div className="d-grid gap-2">
+          <Button type="submit" className="btn btn-dark btn-sm mt-2">
+            Register
+          </Button>
+        </div>
       </Form>
       <Row className="py-3">
         <Col>

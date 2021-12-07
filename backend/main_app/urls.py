@@ -3,6 +3,7 @@ from . import views
 from .views import (
     ProductsDetailView,
     ProductsListView,
+    UserProfileView,
     UserView,
     UserListView,
     MyTokenObtainPairView,
@@ -16,5 +17,8 @@ urlpatterns = [
     path("products/", ProductsListView.as_view()),
     path("products/<int:pk>/", ProductsDetailView.as_view()),
     path("users/profile/", UserView.as_view(), name="users-profile"),
+    path(
+        "users/profile/update/", UserProfileView.as_view(), name="user-profile-update"
+    ),
     path("users/", UserListView.as_view(), name="users"),
 ]
