@@ -32,7 +32,7 @@ const ConfirmOrder = () => {
   useEffect(() => {
     if (success) {
       navigate(`/order/${order._id}`)
-      dispatch({ type: ORDER_CREATE_RESET })
+      dispatch({ type: ORDER_CREATE_RESET }) //need to reset cart and order
     }
   }, [success, navigate])
 
@@ -51,6 +51,7 @@ const ConfirmOrder = () => {
   return (
     <div>
       <FormSteps step1 step2 step3 step4 />
+      <h3>Confirm Order</h3>
       <Row>
         <Col md={8}>
           <ListGroup>

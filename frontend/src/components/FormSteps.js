@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 
 const FormSteps = ({ step1, step2, step3, step4 }) => {
   return (
-    <Nav className="justify-content-center mb-3" style={{ minWidth: '400px' }}>
+    <Nav className="justify-content-center mb-2" style={{ minWidth: '400px' }}>
       <NavItem>
         {step1 ? (
           <LinkContainer to="/login">
