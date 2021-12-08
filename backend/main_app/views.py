@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework import status
+from datetime import datetime
 
 from .models import OrderItem, Product, Order, OrderDelivery
 from .serializers import (
@@ -22,6 +23,17 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 # Create your views here.
+
+
+class UpdateOrderPaid(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        order = Order.objects.get(_id=pk)
+        order.isPaid = True
+        order.paidAt = datetime.now
+        order.save()
+        return Response("paid")
 
 
 class OrderDetailView(APIView):
@@ -82,7 +94,7 @@ class OrderView(APIView):
                 )
 
             product.stockNum -= int(item.quantity)
-            product.save
+            product.save()
         serialized_orders = OrderSerializer(order, many=False)
         return Response(serialized_orders.data)
 
