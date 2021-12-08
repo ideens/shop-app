@@ -12,6 +12,7 @@ import Profile from './pages/Profile'
 import Shipping from './pages/Shipping'
 import Payment from './pages/Payment'
 import ConfirmOrder from './pages/ConfirmOrder'
+import OrderPage from './pages/OrderPage'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/confirmorder" element={<ConfirmOrder />} />
+          <Route path="/order/:id" element={<OrderPage />} />
         </Routes>
       </Container>
       <Footer />

@@ -8,6 +8,7 @@ from .views import (
     UserListView,
     MyTokenObtainPairView,
     RegisterView,
+    OrderView,
 )
 
 
@@ -21,4 +22,5 @@ urlpatterns = [
         "users/profile/update/", UserProfileView.as_view(), name="user-profile-update"
     ),
     path("users/", UserListView.as_view(), name="users"),
+    path("orders/add/", OrderView.as_view(), name="add-order"),
 ]

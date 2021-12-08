@@ -9,13 +9,60 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework import status
 
-from .models import Product
-from .serializers import ProductSerializer, UserSerializer, UserTokenSerializer
+from .models import OrderItem, Product, Order, OrderDelivery
+from .serializers import (
+    ProductSerializer,
+    UserSerializer,
+    UserTokenSerializer,
+    OrderSerializer,
+)
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
+
 # Create your views here.
+
+
+class OrderView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        data = request.data
+        orderItems = data["orderItems"]
+        if orderItems and len(orderItems) == 0:
+            return Response(
+                {"detail": "No order items"}, status=status.HTTP_400_BAD_REQUEST
+            )
+        else:
+            order = Order.objects.create(
+                user=user,
+                paymentMethod=data["paymentMethod"],
+                totalPrice=data["totalPrice"],
+            )
+            shipping = OrderDelivery.objects.create(
+                order=order,
+                address=data["shippingAddress"]["address"],
+                city=data["shippingAddress"]["city"],
+                postCode=data["shippingAddress"]["postcode"],
+                country=data["shippingAddress"]["country"],
+            )
+            for i in orderItems:
+                product = Product.objects.get(_id=i["product"])
+                item = OrderItem.objects.create(
+                    product=product,
+                    order=order,
+                    name=product.name,
+                    quantity=i["quantity"],
+                    price=i["price"],
+                    image=product.image.url,
+                )
+
+            product.stockNum -= int(item.quantity)
+            product.save
+        serialized_orders = OrderSerializer(order, many=False)
+        return Response(serialized_orders.data)
 
 
 class RegisterView(APIView):

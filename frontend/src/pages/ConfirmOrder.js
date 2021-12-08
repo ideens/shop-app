@@ -12,16 +12,40 @@ import {
 } from 'react-bootstrap'
 import FormSteps from '../components/FormSteps'
 import AlertMessage from '../components/AlertMessage'
+import { createOrder } from '../actions/orderActions'
+import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 
 const ConfirmOrder = () => {
+  const navigate = useNavigate()
+  const orderCreate = useSelector((state) => state.orderCreate)
+  const { success, order, error } = orderCreate
+  const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
 
   cart.totalPrice = cart.cartItems
     .reduce((acc, item) => acc + item.price * item.quantity, 0)
     .toFixed(2)
 
+  const pay = JSON.parse(localStorage.getItem('paymentMethod'))
+  console.log('PAYPAY : ', pay)
+
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`)
+      dispatch({ type: ORDER_CREATE_RESET })
+    }
+  }, [success, navigate])
+
   const orderHandler = () => {
     console.log('confirmed order')
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        totalPrice: cart.totalPrice,
+      })
+    )
   }
 
   return (
@@ -85,7 +109,7 @@ const ConfirmOrder = () => {
                           </Link>
                         </Col>
                         <Col md={3}>
-                          {item.quantity} X £{item.price}
+                          {item.quantity} x £{item.price}
                         </Col>
                       </Row>
                       <hr className="mt-0 mb-0" style={{ color: 'white' }} />
@@ -107,6 +131,9 @@ const ConfirmOrder = () => {
               </ListGroupItem>
               <ListGroupItem className="text-dark pt-0">
                 <h1>£{cart.totalPrice}</h1>
+              </ListGroupItem>
+              <ListGroupItem>
+                {error && <AlertMessage variant="danger">{error}</AlertMessage>}
               </ListGroupItem>
               <ListGroupItem className="d-grid gap-2 pt-1">
                 <button

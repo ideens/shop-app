@@ -12,6 +12,7 @@ import {
   userRegisterReducer,
   userUpdateProfileReducer,
 } from './reducers/userReducers'
+import { orderCreateReducer } from './reducers/orderReducers'
 
 // states
 const reducer = combineReducers({
@@ -22,6 +23,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userDetail: userDetailReducer,
   userUpdateProfile: userUpdateProfileReducer,
+  orderCreate: orderCreateReducer,
 })
 
 //loading local storage data into initial state
