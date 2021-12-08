@@ -32,8 +32,8 @@ const Shipping = () => {
 
   return (
     <FormContainer>
-      <h1>Order details</h1>
       <FormSteps step1 step2 />
+      <h1>Order details</h1>
       <h4>Shipping address:</h4>
       <Form onSubmit={formHandler}>
         <FormGroup controlId="address">
