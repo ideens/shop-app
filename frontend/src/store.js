@@ -32,10 +32,14 @@ const storageItems = localStorage.getItem('cartItems')
 const storageUserInfo = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null
+
+const storageShippingAddress = localStorage.getItem('shippingAddress')
+  ? JSON.parse(localStorage.getItem('shippingAddress'))
+  : {}
 // if items exists, get them and parse them. if not, set it empty array / null
 
 const initialState = {
-  cart: { cartItems: storageItems },
+  cart: { cartItems: storageItems, shippingAddress: storageShippingAddress },
   userLogin: { userInfo: storageUserInfo },
 }
 

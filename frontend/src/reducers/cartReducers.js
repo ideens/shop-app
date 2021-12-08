@@ -1,6 +1,13 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants.js'
+import {
+  CART_ADD_ITEM,
+  CART_REMOVE_ITEM,
+  CART_SAVE_ADDRESS,
+} from '../constants/cartConstants.js'
 
-export const cartReducer = (state = { cartItems: [] }, action) => {
+export const cartReducer = (
+  state = { cartItems: [], shippingAddress: {} },
+  action
+) => {
   switch (action.type) {
     case CART_ADD_ITEM:
       const item = action.payload
@@ -35,6 +42,12 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
         ),
         // keeps items that doesn't match that id
         // if item with that id is found, create new array without item
+      }
+
+    case CART_SAVE_ADDRESS:
+      return {
+        ...state,
+        shippingAddress: action.payload,
       }
 
     default:
