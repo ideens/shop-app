@@ -24,6 +24,28 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 # Create your views here.
 
 
+class OrderDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        user = request.user
+
+        try:
+            order = Order.objects.get(_id=pk)
+            if user.is_staff or order.user == user:
+                serialized_order = OrderSerializer(order, many=False)
+                return Response(serialized_order.data)
+            else:
+                Response(
+                    {"detail": "Not authorized to view this order"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+        except:
+            return Response(
+                {"detail": "Order not found"}, status=status.HTTP_400_BAD_REQUEST
+            )
+
+
 class OrderView(APIView):
     permission_classes = [IsAuthenticated]
 
