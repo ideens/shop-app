@@ -14,6 +14,8 @@ import Payment from './pages/Payment'
 import ConfirmOrder from './pages/ConfirmOrder'
 import OrderPage from './pages/OrderPage'
 import UserList from './adminpages/UserList'
+import ProductList from './adminpages/ProductList'
+import ProductEdit from './adminpages/ProductEdit'
 
 function App() {
   return (
@@ -33,9 +35,10 @@ function App() {
           <Route path="/confirmorder" element={<ConfirmOrder />} />
           <Route path="/order/:id" element={<OrderPage />} />
           <Route path="/admin/userlist" element={<UserList />} />
+          <Route path="/admin/productlist" element={<ProductList />} />
+          <Route path="admin/product/:id/edit" element={<ProductEdit />} />
         </Routes>
       </Container>
-      <Footer />
     </div>
   )
 }

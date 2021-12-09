@@ -25,7 +25,7 @@ const Header = () => {
         <Container className="container-fluid">
           <Sidebar />
           <LinkContainer to="">
-            <Navbar.Brand className="px-3">Shop Name</Navbar.Brand>
+            <Navbar.Brand className="px-3">Bing Bong</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

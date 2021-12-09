@@ -13,6 +13,10 @@ from .views import (
     RegisterView,
     OrderView,
     DeleteUser,
+    DeleteProduct,
+    CreateProduct,
+    UpdateProduct,
+    UploadImage,
 )
 
 
@@ -20,7 +24,11 @@ urlpatterns = [
     path("users/login/", MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("users/register/", RegisterView.as_view(), name="register"),
     path("products/", ProductsListView.as_view()),
+    path("products/create/", CreateProduct.as_view(), name="create-product"),
+    path("products/upload", UploadImage.as_view(), name="image-upload"),
     path("products/<int:pk>/", ProductsDetailView.as_view()),
+    path("products/update/<int:pk>/", UpdateProduct.as_view(), name="update-product"),
+    path("products/delete/<int:pk>/", DeleteProduct.as_view(), name="delete-product"),
     path("users/profile/", UserView.as_view(), name="users-profile"),
     path(
         "users/profile/update/", UserProfileView.as_view(), name="user-profile-update"

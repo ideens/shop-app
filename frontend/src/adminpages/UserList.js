@@ -5,19 +5,24 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Table, Button } from 'react-bootstrap'
 import AlertMessage from '../components/AlertMessage'
 import LoadSpinner from '../components/LoadSpinner'
-import { getUserList } from '../actions/userActions'
+import { getUserList, deleteUser } from '../actions/userActions'
 
 const UserList = () => {
   const dispatch = useDispatch()
   const userList = useSelector((state) => state.userList)
   const { loading, error, users } = userList
 
+  const userDelete = useSelector((state) => state.userDelete)
+  const { success: successDelete } = userDelete
+
   useEffect(() => {
     dispatch(getUserList())
-  }, [dispatch])
+  }, [dispatch, successDelete])
 
   const handleDelete = (id) => {
-    console.log('delete', id)
+    if (window.confirm('Delete user?')) {
+      dispatch(deleteUser(id))
+    }
   }
 
   return (
@@ -48,14 +53,6 @@ const UserList = () => {
                 <td>{user.email}</td>
                 <td>{user.isAdmin ? <p>Y</p> : <p>N</p>}</td>
                 <td>
-                  <LinkContainer
-                    to={`admin/user/${user.id}`}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <Button className="btn-sm btn-secondary">
-                      <i className="fas fa-edit"></i>
-                    </Button>
-                  </LinkContainer>
                   <Button
                     className="btn-sm btn-secondary"
                     onClick={() => handleDelete(user.id)}

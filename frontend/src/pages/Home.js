@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Latest Products</h1>
+      <h1>Ideen's Art</h1>
       {loading ? (
         <LoadSpinner />
       ) : error ? (

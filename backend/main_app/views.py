@@ -170,6 +170,53 @@ class DeleteUser(APIView):
         return Response("user deleted")
 
 
+class UploadImage(APIView):
+    def post(self, request):
+        data = request.data
+        product_id = data["product_id"]
+        product = Product.objects.get(_id=product_id)
+        product.image = request.FILES.get("image")
+        product.save()
+        return Response("image saved")
+
+
+class DeleteProduct(APIView):
+    permission_classes = [IsAdminUser]
+
+    def delete(self, request, pk):
+        product = Product.objects.get(_id=pk)
+        product.delete()
+        return Response("product deleted")
+
+
+class CreateProduct(APIView):
+    permission_classes = [IsAdminUser]
+
+    def post(self, request):
+        user = request.user
+        product = Product.objects.create(
+            user=user, name="New Product", price=0, stockNum=0, description=""
+        )
+        serialized_product = ProductSerializer(product, many=False)
+        return Response(serialized_product.data)
+
+
+class UpdateProduct(APIView):
+    permission_classes = [IsAdminUser]
+
+    def put(self, request, pk):
+        data = request.data
+        product = Product.objects.get(_id=pk)
+        product.name = data["name"]
+        product.price = data["price"]
+        product.stockNum = data["stockNum"]
+        product.description = data["description"]
+
+        product.save()
+        serialized_product = ProductSerializer(product)
+        return Response(serialized_product.data)
+
+
 class ProductsDetailView(APIView):
     def get(self, request, pk):
         product = Product.objects.get(_id=pk)
