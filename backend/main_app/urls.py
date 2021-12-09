@@ -5,6 +5,7 @@ from .views import (
     ProductsDetailView,
     ProductsListView,
     UpdateOrderPaid,
+    UserOrders,
     UserProfileView,
     UserView,
     UserListView,
@@ -25,6 +26,7 @@ urlpatterns = [
     ),
     path("users/", UserListView.as_view(), name="users"),
     path("orders/add/", OrderView.as_view(), name="add-order"),
+    path("orders/myorders/", UserOrders.as_view(), name="my-orders"),
     path("orders/<str:pk>/", OrderDetailView.as_view(), name="get-order"),
     path("orders/<str:pk>/pay/", UpdateOrderPaid.as_view(), name="pay-order"),
 ]

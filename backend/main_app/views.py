@@ -36,6 +36,16 @@ class UpdateOrderPaid(APIView):
         return Response("paid")
 
 
+class UserOrders(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        orders = user.order_set.all()
+        serialized_orders = OrderSerializer(orders, many=True)
+        return Response(serialized_orders.data)
+
+
 class OrderDetailView(APIView):
     permission_classes = [IsAuthenticated]
 

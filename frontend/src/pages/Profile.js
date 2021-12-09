@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import {
+  Table,
   Form,
   Button,
   Row,
@@ -10,10 +11,12 @@ import {
   FormLabel,
   FormControl,
 } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import AlertMessage from '../components/AlertMessage'
 import LoadSpinner from '../components/LoadSpinner'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
+import { getMyOrders } from '../actions/orderActions'
 
 const Profile = () => {
   const navigate = useNavigate()
@@ -34,6 +37,9 @@ const Profile = () => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
   const { success } = userUpdateProfile
 
+  const orderMyList = useSelector((state) => state.orderMyList)
+  const { loading: loadingOrders, error: errorOrders, orders } = orderMyList
+
   useEffect(() => {
     if (!userInfo) {
       navigate('/login')
@@ -41,6 +47,7 @@ const Profile = () => {
       if (!user || !user.name || success) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET })
         dispatch(getUserDetails('profile'))
+        dispatch(getMyOrders())
       } else {
         setName(user.name)
         setEmail(user.email)
@@ -48,88 +55,52 @@ const Profile = () => {
     }
   }, [dispatch, navigate, userInfo, user, success])
 
-  const submitHandler = (e) => {
-    e.preventDefault()
-    if (password !== passwordConf) {
-      setMessage('Passwords do not match')
-    } else {
-      console.log('updating profile')
-      dispatch(
-        updateUserProfile({
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          password: user.password,
-        })
-      )
-      console.log('dispatch complete')
-    }
-    setMessage('')
-  }
-
   return (
     <Row>
-      <Col md={3}>
-        <h2>My Account</h2>
-        {message && (
-          <AlertMessage heading="Oops!" variant="danger">
-            {message}
-          </AlertMessage>
-        )}
-        {error && (
-          <AlertMessage heading="Error" variant="danger">
-            {error}
-          </AlertMessage>
-        )}
-        {loading && <LoadSpinner />}
-        <Form onSubmit={submitHandler}>
-          <FormGroup controlId="name">
-            <FormLabel className="mt-1">Name</FormLabel>
-            <FormControl
-              required
-              type="name"
-              placeholder="Full name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            ></FormControl>
-          </FormGroup>
-          <FormGroup controlId="email">
-            <FormLabel className="mt-2">Email</FormLabel>
-            <FormControl
-              required
-              type="email"
-              placeholder="example@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></FormControl>
-          </FormGroup>
-          <FormGroup controlId="password">
-            <FormLabel className="mt-2">Password</FormLabel>
-            <FormControl
-              type="password"
-              placeholder="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></FormControl>
-          </FormGroup>
-          <FormGroup controlId="passwordConf">
-            <FormLabel className="mt-2">Confirm password</FormLabel>
-            <FormControl
-              type="password"
-              placeholder="password"
-              value={passwordConf}
-              onChange={(e) => setPasswordConf(e.target.value)}
-            ></FormControl>
-          </FormGroup>
-          <div className="d-grid gap-2">
-            <Button type="submit" className="btn btn-dark btn-sm mt-2">
-              Update
-            </Button>
-          </div>
-        </Form>
-      </Col>
       <Col md={9}>
         <h2>Order History</h2>
+        {loadingOrders ? (
+          <LoadSpinner />
+        ) : errorOrders ? (
+          <AlertMessage heading="Error" variant="danger">
+            {errorOrders}
+          </AlertMessage>
+        ) : (
+          <Table className="table-sm table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Total Cost</th>
+                <th>Paid</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {orders.map((order) => (
+                <tr>
+                  <td>{order._id}</td>
+                  <td>{order.createdAt.substring(0, 10)}</td>
+                  <td>£{order.totalPrice}</td>
+                  <td>
+                    {order.isPaid ? order.paidAt.substring(0, 10) : <p>-</p>}
+                  </td>
+                  <td>
+                    <LinkContainer to={`/order/${order._id}`}>
+                      <Button
+                        type="submit"
+                        className="btn btn-dark btn-sm mt-0"
+                      >
+                        Details
+                      </Button>
+                    </LinkContainer>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        )}
       </Col>
     </Row>
   )

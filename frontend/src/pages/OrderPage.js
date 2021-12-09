@@ -172,7 +172,7 @@ const OrderPage = () => {
           <ListGroupItem className="py-0 px-0">
             {order.isPaid ? (
               <AlertMessage heading="Payment status" variant="success">
-                Paid on {order.paidAt}
+                Paid on {order.paidAt.substring(0, 10)}
               </AlertMessage>
             ) : (
               <AlertMessage heading="Payment status" variant="warning">
@@ -183,7 +183,7 @@ const OrderPage = () => {
           <ListGroupItem className="py-0 px-0">
             {order.isDelivered ? (
               <AlertMessage heading="Delivery status" variant="success">
-                Delivered on {order.deliveredAt}
+                Delivered on {order.deliveredAt.substring(0, 10)}
               </AlertMessage>
             ) : (
               <AlertMessage heading="Delivery status" variant="warning">
