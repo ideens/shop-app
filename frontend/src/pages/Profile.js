@@ -66,7 +66,7 @@ const Profile = () => {
             {errorOrders}
           </AlertMessage>
         ) : (
-          <Table className="table-sm table-striped">
+          <Table className="table-sm table-striped table-hover">
             <thead>
               <tr>
                 <th>ID</th>
@@ -79,7 +79,7 @@ const Profile = () => {
 
             <tbody>
               {orders.map((order) => (
-                <tr>
+                <tr key={order._id}>
                   <td>{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
                   <td>£{order.totalPrice}</td>

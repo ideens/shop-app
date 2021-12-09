@@ -161,6 +161,15 @@ class UserListView(APIView):
         return Response(serialized_users.data)
 
 
+class DeleteUser(APIView):
+    permission_classes = [IsAdminUser]
+
+    def delete(self, request, pk):
+        userToDelete = User.objects.get(id=pk)
+        userToDelete.delete()
+        return Response("user deleted")
+
+
 class ProductsDetailView(APIView):
     def get(self, request, pk):
         product = Product.objects.get(_id=pk)

@@ -12,6 +12,7 @@ from .views import (
     MyTokenObtainPairView,
     RegisterView,
     OrderView,
+    DeleteUser,
 )
 
 
@@ -25,6 +26,7 @@ urlpatterns = [
         "users/profile/update/", UserProfileView.as_view(), name="user-profile-update"
     ),
     path("users/", UserListView.as_view(), name="users"),
+    path("users/delete/<str:pk>/", DeleteUser.as_view(), name="delete-user"),
     path("orders/add/", OrderView.as_view(), name="add-order"),
     path("orders/myorders/", UserOrders.as_view(), name="my-orders"),
     path("orders/<str:pk>/", OrderDetailView.as_view(), name="get-order"),

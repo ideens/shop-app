@@ -13,6 +13,7 @@ import Shipping from './pages/Shipping'
 import Payment from './pages/Payment'
 import ConfirmOrder from './pages/ConfirmOrder'
 import OrderPage from './pages/OrderPage'
+import UserList from './adminpages/UserList'
 
 function App() {
   return (
@@ -24,13 +25,14 @@ function App() {
           <Route exact path="/product/:id" element={<ProductPage />} />
           <Route exact path="/cart" element={<Cart />} />
           <Route path="/cart/:id/*" element={<Cart />} />
-          <Route path="/login/" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/register/" element={<RegisterPage />} />
           <Route path="/profile/" element={<Profile />} />
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/confirmorder" element={<ConfirmOrder />} />
           <Route path="/order/:id" element={<OrderPage />} />
+          <Route path="/admin/userlist" element={<UserList />} />
         </Routes>
       </Container>
       <Footer />

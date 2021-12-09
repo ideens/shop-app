@@ -26,15 +26,14 @@ const RegisterPage = () => {
   const dispatch = useDispatch()
 
   const url = new URLSearchParams(document.location.search)
-  let params = new URLSearchParams(url.search)
-  const redirect = params.has('redirect') ? params.get(redirect) : '/'
+  const redirect = url.has('redirect') ? url.get('redirect') : '/'
 
   const userRegister = useSelector((state) => state.userRegister)
   const { loading, error, userInfo } = userRegister
 
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect)
+      navigate(`/${redirect}`)
     }
   }, [navigate, redirect, userInfo])
 
