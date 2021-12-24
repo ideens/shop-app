@@ -66,8 +66,32 @@ const ProductEdit = () => {
     )
   }
 
-  const uploadHandler = async (e) => {
-    console.log('file uploading')
+  const uploadImageHandler = async (e) => {
+    const file = e.target.files[0]
+    const formData = new FormData()
+
+    formData.append('image', file)
+    formData.append('product_id', id)
+
+    setUploading(true)
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+
+      const { data } = await axios.post(
+        '/api/products/upload/',
+        formData,
+        config
+      )
+      setImage(data)
+      setUploading(false)
+    } catch (error) {
+      setUploading(false)
+    }
   }
 
   return (
@@ -116,6 +140,11 @@ const ProductEdit = () => {
             ></Form.Control>
           </Form.Group>
 
+          <Form.Group controlId="formFile">
+            <Form.Label className="mt-2">Upload</Form.Label>
+            <Form.Control type="file" onChange={uploadImageHandler} />
+          </Form.Group>
+
           <Form.Group controlId="stockNum">
             <Form.Label className="mt-2">Quantity in stock</Form.Label>
             <Form.Control
@@ -134,6 +163,7 @@ const ProductEdit = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></Form.Control>
+            {uploading && <LoadSpinner />}
           </Form.Group>
 
           <div className="d-grid gap-2">

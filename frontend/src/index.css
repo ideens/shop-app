@@ -7,6 +7,7 @@ main {
 }
 
 body {
+  background-color: white !important;
   background-image: url('./assets/bg-art6.png') !important;
   background-repeat: no-repeat;
   background-attachment: fixed;

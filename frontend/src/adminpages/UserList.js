@@ -51,7 +51,13 @@ const UserList = () => {
                 <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.isAdmin ? <p>Y</p> : <p>N</p>}</td>
+                <td>
+                  {user.isAdmin ? (
+                    <i className="fas fa-check"></i>
+                  ) : (
+                    <i className="fas fa-times"></i>
+                  )}
+                </td>
                 <td>
                   <Button
                     className="btn-sm btn-secondary"

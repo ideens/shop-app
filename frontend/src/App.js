@@ -16,7 +16,7 @@ import OrderPage from './pages/OrderPage'
 import UserList from './adminpages/UserList'
 import ProductList from './adminpages/ProductList'
 import ProductEdit from './adminpages/ProductEdit'
-import './styles/style.css'
+import OrderList from './adminpages/OrderList'
 
 function App() {
   return (
@@ -37,7 +37,8 @@ function App() {
           <Route path="/order/:id" element={<OrderPage />} />
           <Route path="/admin/userlist" element={<UserList />} />
           <Route path="/admin/productlist" element={<ProductList />} />
-          <Route path="admin/product/:id/edit" element={<ProductEdit />} />
+          <Route path="/admin/product/:id/edit" element={<ProductEdit />} />
+          <Route path="/admin/orderlist" element={<OrderList />} />
         </Routes>
       </Container>
     </div>

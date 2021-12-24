@@ -33,7 +33,18 @@ class UpdateOrderPaid(APIView):
         order.isPaid = True
         order.paidAt = datetime.now
         order.save()
-        return Response("paid")
+        return Response("Paid")
+
+
+class UpdateOrderDelivered(APIView):
+    permission_classes = [IsAdminUser]
+
+    def put(self, request, pk):
+        order = Order.objects.get(_id=pk)
+        order.isDelivered = True
+        order.deliveredAt = datetime.now
+        order.save()
+        return Response("Delivered")
 
 
 class UserOrders(APIView):
@@ -42,6 +53,15 @@ class UserOrders(APIView):
     def get(self, request):
         user = request.user
         orders = user.order_set.all()
+        serialized_orders = OrderSerializer(orders, many=True)
+        return Response(serialized_orders.data)
+
+
+class UserOrdersList(APIView):
+    permission_classes = [IsAdminUser]
+
+    def get(self, request):
+        orders = Order.objects.all()
         serialized_orders = OrderSerializer(orders, many=True)
         return Response(serialized_orders.data)
 
@@ -177,7 +197,7 @@ class UploadImage(APIView):
         product = Product.objects.get(_id=product_id)
         product.image = request.FILES.get("image")
         product.save()
-        return Response("image saved")
+        return Response("Image successfully uploaded")
 
 
 class DeleteProduct(APIView):
