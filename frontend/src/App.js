@@ -16,10 +16,11 @@ import OrderPage from './pages/OrderPage'
 import UserList from './adminpages/UserList'
 import ProductList from './adminpages/ProductList'
 import ProductEdit from './adminpages/ProductEdit'
+import './styles/style.css'
 
 function App() {
   return (
-    <div>
+    <div className="body">
       <Header />
       <Container className="py-3">
         <Routes>
@@ -28,9 +29,9 @@ function App() {
           <Route exact path="/cart" element={<Cart />} />
           <Route path="/cart/:id/*" element={<Cart />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/register/" element={<RegisterPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile/" element={<Profile />} />
-          <Route path="/shipping" element={<Shipping />} />
+          <Route path="/login/shipping" element={<Shipping />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/confirmorder" element={<ConfirmOrder />} />
           <Route path="/order/:id" element={<OrderPage />} />

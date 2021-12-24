@@ -4,16 +4,18 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Sidebar from './Sidebar'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../actions/userActions.js'
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
   const dispatch = useDispatch()
-
+  const navigate = useNavigate()
   const handleLogout = () => {
     console.log('logout')
     dispatch(logout())
+    navigate('/')
   }
 
   return (
@@ -25,7 +27,7 @@ const Header = () => {
         <Container className="container-fluid">
           <Sidebar />
           <LinkContainer to="">
-            <Navbar.Brand className="px-3">Bing Bong</Navbar.Brand>
+            <Navbar.Brand className="px-3">Artisan</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

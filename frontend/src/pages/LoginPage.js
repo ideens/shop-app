@@ -31,7 +31,7 @@ const LoginPage = () => {
   useEffect(() => {
     console.log('first instance', redirect)
     if (userInfo) {
-      navigate(`/${redirect}`)
+      navigate(`${redirect}`)
       console.log('REDIRECT - ', redirect)
     }
   }, [navigate, redirect, userInfo])

@@ -48,7 +48,7 @@ const RegisterPage = () => {
 
   return (
     <FormContainer>
-      <h2>Log in</h2>
+      <h2>Register</h2>
       {message && (
         <AlertMessage heading="Oops!" variant="danger">
           {message}
