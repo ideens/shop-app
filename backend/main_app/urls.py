@@ -19,6 +19,7 @@ from .views import (
     CreateProduct,
     UpdateProduct,
     UploadImage,
+    CreateReview,
 )
 
 
@@ -28,6 +29,7 @@ urlpatterns = [
     path("products/", ProductsListView.as_view()),
     path("products/create/", CreateProduct.as_view(), name="create-product"),
     path("products/upload/", UploadImage.as_view(), name="image-upload"),
+    path("products/<int:pk>/reviews/", CreateReview.as_view(), name="create-review"),
     path("products/<int:pk>/", ProductsDetailView.as_view()),
     path("products/update/<int:pk>/", UpdateProduct.as_view(), name="update-product"),
     path("products/delete/<int:pk>/", DeleteProduct.as_view(), name="delete-product"),
