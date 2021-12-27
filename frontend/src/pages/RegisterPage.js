@@ -33,7 +33,7 @@ const RegisterPage = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(`/${redirect}`)
+      navigate(`${redirect}`)
     }
   }, [navigate, redirect, userInfo])
 
