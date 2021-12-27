@@ -17,15 +17,18 @@ const Sidebar = () => {
         className="card text-black bg-light"
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Categories</Offcanvas.Title>
+          <Offcanvas.Title>Contact</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className="justify-content-end flex-grow-1 pe-3">
             <Nav.Link href="#action1" className="text-dark">
-              Home
+              Commissions
             </Nav.Link>
             <Nav.Link href="#action2" className="text-dark">
-              Link
+              Newsletter
+            </Nav.Link>
+            <Nav.Link href="#action2" className="text-dark">
+              Workshops
             </Nav.Link>
           </Nav>
         </Offcanvas.Body>
