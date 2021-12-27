@@ -18,16 +18,6 @@ const Home = () => {
     // updates store
   }, [dispatch])
 
-  // const [products, setProducts] = useState([])
-
-  // useEffect(() => {
-  //   async function getProducts() {
-  //     const { data } = await axios.get('http://localhost:8000/api/products/')
-  //     setProducts(data)
-  //   }
-  //   getProducts()
-  // }, [])
-
   return (
     <div>
       <h1>Latest Art</h1>

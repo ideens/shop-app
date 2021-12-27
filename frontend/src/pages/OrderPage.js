@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { useParams } from 'react-router'
 import {
-  Button,
   ListGroup,
   Image,
   Card,
