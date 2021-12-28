@@ -55,7 +55,6 @@ const ProductPage = () => {
   }, [dispatch, id, successReview])
 
   const addProductToCart = () => {
-    console.log('added to cart:', id)
     navigate(`/cart/${id}?quantity=${quantity}`)
   }
 

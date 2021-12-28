@@ -14,7 +14,6 @@ const Header = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const handleLogout = () => {
-    console.log('logout')
     dispatch(logout())
     navigate('/')
   }

@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.39c2eef9.chunk.css",
+    "main.js": "/static/js/main.2d3874e0.chunk.js",
+    "main.js.map": "/static/js/main.2d3874e0.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.2aa76ddd.js",
+    "runtime-main.js.map": "/static/js/runtime-main.2aa76ddd.js.map",
+    "static/js/2.5bf2821a.chunk.js": "/static/js/2.5bf2821a.chunk.js",
+    "static/js/2.5bf2821a.chunk.js.map": "/static/js/2.5bf2821a.chunk.js.map",
+    "static/js/3.ab4a5edf.chunk.js": "/static/js/3.ab4a5edf.chunk.js",
+    "static/js/3.ab4a5edf.chunk.js.map": "/static/js/3.ab4a5edf.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.39c2eef9.chunk.css.map": "/static/css/main.39c2eef9.chunk.css.map",
+    "static/js/2.5bf2821a.chunk.js.LICENSE.txt": "/static/js/2.5bf2821a.chunk.js.LICENSE.txt",
+    "static/media/artisan-logo.bd1d6680.png": "/static/media/artisan-logo.bd1d6680.png",
+    "static/media/index.css": "/static/media/bg-art6.3901dc2c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2aa76ddd.js",
+    "static/js/2.5bf2821a.chunk.js",
+    "static/css/main.39c2eef9.chunk.css",
+    "static/js/main.2d3874e0.chunk.js"
+  ]
+}

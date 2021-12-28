@@ -53,7 +53,6 @@ const ProductEdit = () => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log('product updated')
     dispatch(
       updateProduct({
         _id: id,

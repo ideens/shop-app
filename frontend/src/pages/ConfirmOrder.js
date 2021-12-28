@@ -27,7 +27,6 @@ const ConfirmOrder = () => {
     .toFixed(2)
 
   const pay = JSON.parse(localStorage.getItem('paymentMethod'))
-  console.log('PAYPAY : ', pay)
 
   useEffect(() => {
     if (success) {
@@ -37,7 +36,6 @@ const ConfirmOrder = () => {
   }, [success, navigate])
 
   const orderHandler = () => {
-    console.log('confirmed order')
     dispatch(
       createOrder({
         orderItems: cart.cartItems,

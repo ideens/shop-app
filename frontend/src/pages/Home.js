@@ -13,7 +13,6 @@ const Home = () => {
   const { error, loading, products } = productList
 
   useEffect(() => {
-    console.log('use effect reached')
     dispatch(listProducts())
     // updates store
   }, [dispatch])

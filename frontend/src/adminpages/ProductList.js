@@ -50,7 +50,6 @@ const ProductList = () => {
   }
 
   const handleCreateProduct = (product) => {
-    console.log('added product')
     dispatch(createProduct())
   }
 

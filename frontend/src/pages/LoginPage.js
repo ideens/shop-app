@@ -29,10 +29,8 @@ const LoginPage = () => {
   const { loading, error, userInfo } = userLogin
 
   useEffect(() => {
-    console.log('first instance', redirect)
     if (userInfo) {
       navigate(`${redirect}`)
-      console.log('REDIRECT - ', redirect)
     }
   }, [navigate, redirect, userInfo])
 

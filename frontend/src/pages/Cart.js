@@ -30,10 +30,8 @@ const Cart = () => {
 
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
-  console.log('cart Items: ', cartItems)
 
   const removeItem = (id) => {
-    console.log('remove', id)
     dispatch(removeFromCart(id))
   }
 
