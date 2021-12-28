@@ -36,9 +36,6 @@ pyzmq==19.0.2
 
 requests
 
-Rtree==0.9.4
-ruamel_yaml==0.15.87
-scikit-image==0.17.2
 Send2Trash==1.5.0
 simplegeneric==0.8.1
 snowballstemmer==2.0.0
