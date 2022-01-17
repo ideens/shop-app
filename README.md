@@ -1,4 +1,4 @@
-# Artisan
+# Project 4: Artisan
 ![app demo image](homepage.png)
 
 ## Overview
