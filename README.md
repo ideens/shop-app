@@ -1,4 +1,5 @@
 # Artisan
+![app demo image](homepage.png)
 
 ## Overview
 This was the fourth and final project in the General Assembly course and was taken on as a solo project. 
@@ -6,8 +7,6 @@ This was the fourth and final project in the General Assembly course and was tak
 Artisan is an e-commerce site based around my own art, with a focus on the cart and checkout process. A user can browse products on the application and add items to their cart, but they must be logged in to proceed to checkout. A regular customer cannot edit or delete any products, but an admin user can edit products, delete users, and view orders.
 
 My main aim for this project was to create a clean and easy-to-use site while also implementing Redux for global state management. This was a particularly interesting journey for me as Redux was not covered in the syllabus and so I had to conduct independent research and learning in order to successfully use it.
-
-![app demo image](homepage.png)
 
 ![app demo](artisan-demo.gif)
 
